@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "compressed_context.json",
+  "description": "Compressed report context for downstream LLM consumption. Field lengths enforced by validator, not schema.",
+  "type": "object",
+  "required": [
+    "executive_summary",
+    "questions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "executive_summary": {
+      "type": "object",
+      "required": [
+        "headline",
+        "key_findings",
+        "body_compressed",
+        "key_questions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key_findings": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "text",
+                  "evidence_annotations"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "evidence_annotations": {
+                    "type": "array",
+                    "maxItems": 2,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "claim_id",
+                        "question_id",
+                        "claim_text",
+                        "scope",
+                        "supporting_source_files",
+                        "question_source_files"
+                      ],
+                      "properties": {
+                        "claim_id": {
+                          "type": "string",
+                          "pattern": "^Q\\d+_C\\d+$"
+                        },
+                        "question_id": {
+                          "type": "string",
+                          "pattern": "^Q\\d+$"
+                        },
+                        "claim_text": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "scope": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "supporting_source_files": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "question_source_files": {
+                          "type": "integer",
+                          "minimum": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "body_compressed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notable_outcomes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "outcome",
+              "quote",
+              "attribution"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "outcome": {
+                "type": "string",
+                "minLength": 1
+              },
+              "quote": {
+                "type": "string",
+                "minLength": 1
+              },
+              "attribution": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "question_id",
+          "question_text",
+          "synthesis_compressed",
+          "selected_quotes"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "pattern": "^Q\\d+$"
+          },
+          "question_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "synthesis_compressed": {
+            "type": "string",
+            "minLength": 1
+          },
+          "selected_quotes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "quote",
+                "attribution",
+                "file_id",
+                "theme_label"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "quote": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "attribution": {
+                  "type": "string"
+                },
+                "file_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "theme_label": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

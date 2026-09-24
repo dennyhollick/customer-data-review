@@ -1,0 +1,372 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "report.json",
+  "description": "Report structure for Phase 4. No maxLength constraints \u2014 field lengths enforced by linter, not schema.",
+  "type": "object",
+  "required": [
+    "executive_summary",
+    "questions",
+    "methodology"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "executive_summary": {
+      "type": "object",
+      "required": [
+        "headline",
+        "body",
+        "key_questions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "headline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "body": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "key_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "key_findings": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "text",
+                  "evidence_annotations"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "evidence_annotations": {
+                    "type": "array",
+                    "maxItems": 2,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "claim_id",
+                        "question_id",
+                        "claim_text",
+                        "scope",
+                        "supporting_source_files",
+                        "question_source_files"
+                      ],
+                      "properties": {
+                        "claim_id": {
+                          "type": "string",
+                          "pattern": "^Q\\d+_C\\d+$"
+                        },
+                        "question_id": {
+                          "type": "string",
+                          "pattern": "^Q\\d+$"
+                        },
+                        "claim_text": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "scope": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "supporting_source_files": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "question_source_files": {
+                          "type": "integer",
+                          "minimum": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "notable_outcomes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "outcome",
+              "quote",
+              "attribution"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "outcome": {
+                "type": "string",
+                "minLength": 1
+              },
+              "quote": {
+                "type": "string",
+                "minLength": 1
+              },
+              "attribution": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "question_id",
+          "question_text",
+          "synthesis",
+          "takeaways"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "pattern": "^Q\\d+$"
+          },
+          "question_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "synthesis": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "lead_quote_id": {
+            "description": "Explicit retained mention ID for the accepted leading quote. Null suppresses it; renderers must not choose a fallback when this key is present.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "takeaways": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "notable_outcomes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "outcome",
+                "quote",
+                "attribution"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "outcome": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "quote": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "attribution": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "additional_insights": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "text",
+                "scope"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "scope": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "methodology": {
+      "type": "object",
+      "required": [
+        "source_count",
+        "excluded_count",
+        "source_types",
+        "question_count",
+        "questions",
+        "audit_pass_rate",
+        "confidence_model",
+        "data_quality_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_types": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "question_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "audit_pass_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_model": {
+          "type": "string"
+        },
+        "data_quality_notes": {
+          "type": "string"
+        },
+        "total_interactions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audit_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audit_passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "company_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audit_pass_rate_raw": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "audit_pass_rate_corrected": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "synthesis_attribution_accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "audit_raw_pass_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "audit_corrected_pass_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "audit_sample_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audit_population": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audit_excluded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audit_unassessed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "audit_mode": {
+          "type": "string",
+          "enum": [
+            "sampled",
+            "skip"
+          ]
+        },
+        "audit_status": {
+          "type": "string",
+          "enum": [
+            "ready",
+            "incomplete"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "findings.json",
+  "description": "Computed findings from Phase 3c.",
+  "type": "object",
+  "required": ["questions"],
+  "additionalProperties": false,
+  "properties": {
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question_id", "question_text", "total_mentions", "total_source_types", "total_segments", "sparse", "themes", "high_intensity_outliers", "outlier_source_type_count", "outlier_source_type_breakdown"],
+        "additionalProperties": false,
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "pattern": "^Q\\d+$"
+          },
+          "question_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "total_mentions": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "total_source_types": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "total_segments": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sparse": {
+            "type": "boolean"
+          },
+          "themes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["theme_id", "label", "description", "type", "mention_count", "mention_pct", "source_type_count", "source_type_pct", "source_type_breakdown", "segment_count", "segment_pct", "segment_breakdown", "sample_quotes", "mention_ids"],
+              "additionalProperties": false,
+              "properties": {
+                "theme_id": {
+                  "type": "string",
+                  "pattern": "^Q\\d+_T\\d+$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["complaint", "praise", "feature_request", "competitive", "behavioral", "risk", "other"]
+                },
+                "mention_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "mention_pct": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "source_type_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "source_type_pct": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "source_type_breakdown": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "segment_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "segment_pct": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "segment_breakdown": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "sample_quotes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["quote", "attribution", "file_id", "notable", "mention", "sentiment"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "mention_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "quote": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "display_quote": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "attribution": {
+                        "type": "string"
+                      },
+                      "file_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "notable": {
+                        "type": "boolean"
+                      },
+                      "mention": {
+                        "type": "string"
+                      },
+                      "sentiment": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "mention_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9_]+_Q\\d+_\\d+$"
+                  }
+                },
+                "demoted": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "high_intensity_outliers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["mention_id", "mention", "quote", "file_id"],
+              "additionalProperties": false,
+              "properties": {
+                "mention_id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_]+_Q\\d+_\\d+$"
+                },
+                "mention": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "quote": {
+                  "type": "string"
+                },
+                "display_quote": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "file_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "outlier_source_type_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "outlier_source_type_breakdown": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

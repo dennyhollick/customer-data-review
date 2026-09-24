@@ -1,0 +1,20 @@
+{
+  "name": "pmm-camp",
+  "interface": {
+    "displayName": "PMM Camp"
+  },
+  "plugins": [
+    {
+      "name": "customer-data-review",
+      "source": {
+        "source": "local",
+        "path": "./plugins/customer-data-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "customer-data-review",
+  "version": "1.0.0",
+  "description": "Turn customer call transcripts, surveys and reviews into a report with counted themes, checked quotes, executive findings and opportunities.",
+  "author": {
+    "name": "Denny Hollick",
+    "url": "https://pmmcamp.dennyhollick.com"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Customer Data Review",
+        "shortDescription": "Counted themes, checked quotes and opportunities from customer calls",
+        "longDescription": "Turn customer call transcripts, surveys and reviews into a report with counted themes, checked quotes, executive findings and opportunities. Needs file access and Python 3.10+.",
+        "developerName": "Denny Hollick",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "defaultPrompt": [
+          "Use Customer Data Review on the customer files in my project folder (data/). Use the five bootcamp questions."
+        ]
+      }
+    }
+  }
+}

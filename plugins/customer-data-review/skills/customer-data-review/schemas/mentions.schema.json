@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "mentions.jsonl line",
+  "description": "One line of mentions.jsonl — per-source output from Phase 2 summarization.",
+  "type": "object",
+  "required": ["file_id", "mentions"],
+  "additionalProperties": false,
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mentions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["mention_id", "question_id", "mention", "quote", "quote_attribution", "sentiment", "notable_quote"],
+        "additionalProperties": false,
+        "properties": {
+          "mention_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_]+_Q\\d+_\\d+$"
+          },
+          "question_id": {
+            "type": "string",
+            "pattern": "^Q\\d+$"
+          },
+          "mention": {
+            "type": "string",
+            "minLength": 1
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1
+          },
+          "quote_attribution": {
+            "type": "string"
+          },
+          "sentiment": {
+            "type": "string",
+            "enum": ["positive", "negative", "mixed", "neutral"]
+          },
+          "notable_quote": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

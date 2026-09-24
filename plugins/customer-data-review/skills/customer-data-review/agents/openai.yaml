@@ -1,0 +1,4 @@
+interface:
+  display_name: "Customer Data Review"
+  short_description: "Customer themes, accurate counts and useful findings"
+  default_prompt: "Use $customer-data-review to analyze my customer files and create a concise report with quantified findings, relevant quotes and an executive summary."

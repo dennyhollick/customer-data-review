@@ -1,0 +1,2 @@
+# No required packages: Python 3.10+ standard library is enough.
+# Optional: jsonschema>=4.0 (used automatically when installed).

@@ -1,0 +1,9 @@
+{
+  "name": "customer-data-review",
+  "version": "1.0.0",
+  "description": "Turn customer call transcripts, surveys and reviews into a report with counted themes, checked quotes, executive findings and opportunities.",
+  "author": {
+    "name": "Denny Hollick",
+    "url": "https://pmmcamp.dennyhollick.com"
+  }
+}

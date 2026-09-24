@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Phase 1a classification row",
+  "description": "Per-source classification output from Phase 1a parallel classification.",
+  "type": "object",
+  "required": ["file_id", "source_type", "company", "lifecycle", "segment", "quality", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "sales_call", "renewal_call", "churn_interview", "cs_call",
+        "internal_meeting", "nps_survey", "csat_survey", "general_survey",
+        "review", "support_ticket", "feature_request", "competitive_intel",
+        "advisory", "community", "internal_notes", "other"
+      ]
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": ["prospect", "active", "churned", "unknown"]
+    },
+    "segment": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "quality": {
+      "type": "string",
+      "enum": ["good", "bad"]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150
+    },
+    "interaction_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "interaction_type": {
+      "type": "string",
+      "enum": ["single", "survey_responses", "reviews", "tickets", "deals", "requests", "other_multi"]
+    },
+    "interaction_note": {
+      "type": "string",
+      "maxLength": 300
+    }
+  }
+}

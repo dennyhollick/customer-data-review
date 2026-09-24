@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "plan.json",
+  "description": "Analysis plan — locked after Phase 1e. Defines business context, questions, segments, and source inventory.",
+  "type": "object",
+  "required": ["business_context", "scope", "questions", "segments", "files"],
+  "additionalProperties": false,
+  "properties": {
+    "business_context": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^Q\\d+$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file_id", "source_type", "company", "lifecycle", "segment", "quality", "summary"],
+        "additionalProperties": false,
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "sales_call", "renewal_call", "churn_interview", "cs_call",
+              "internal_meeting", "nps_survey", "csat_survey", "general_survey",
+              "review", "support_ticket", "feature_request", "competitive_intel",
+              "advisory", "community", "internal_notes", "other"
+            ]
+          },
+          "company": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lifecycle": {
+            "type": "string",
+            "enum": ["prospect", "active", "churned", "unknown"]
+          },
+          "segment": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "quality": {
+            "type": "string",
+            "enum": ["good", "bad"]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "excluded": {
+            "type": "boolean"
+          },
+          "exclusion_reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "interaction_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "interaction_type": {
+            "type": "string",
+            "enum": ["single", "survey_responses", "reviews", "tickets", "deals", "requests", "other_multi"]
+          },
+          "interaction_note": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      }
+    }
+  }
+}
