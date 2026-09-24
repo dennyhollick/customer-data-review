@@ -8,7 +8,7 @@ The skill reads your customer files, runs small Python checks and saves a report
 - A project folder, such as `pmm-bootcamp-week-2/`, with your transcripts or other customer files in `data/`. Plain text and Markdown work best; export Word and PDF files to text first.
 - Two sentences about your business and the decision this research should inform.
 
-Twenty or so representative calls is a good first run; it handles up to about 200. Each call is read in full, so large runs use a lot of your plan's usage.
+Plan on 20 to 100 representative calls; it handles up to about 200. Each call is read in full, so large runs use a lot of your plan's usage.
 
 ## Install
 
@@ -54,7 +54,7 @@ The skill reads your customer files, runs small Python checks and saves a report
 - A project folder, such as `pmm-bootcamp-week-2/`, with your transcripts or other customer files in `data/`. Plain text and Markdown work best; export Word and PDF files to text first.
 - Two sentences about your business and the decision this research should inform.
 
-Twenty or so representative calls is a good first run; it handles up to about 200. Each call is read in full, so large runs use a lot of your plan's usage.
+Plan on 20 to 100 representative calls; it handles up to about 200. Each call is read in full, so large runs use a lot of your plan's usage.
 
 ## Install
 
