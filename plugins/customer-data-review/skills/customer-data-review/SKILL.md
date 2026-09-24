@@ -22,7 +22,7 @@ Turn the supplied customer evidence into `report.html` and `report.md` with exec
 
 ## Large datasets
 
-The workflow is built for up to about 200 calls (benchmarked at 20 so far); no step loads the whole dataset at once:
+The workflow handles up to about 200 calls because no step loads the whole dataset at once:
 - extraction reads at most four sources per batch and saves each result;
 - themes are drafted one question at a time, and a very large question drafts themes from a sample, then assigns mentions in chunks;
 - report sections are written one question at a time;

@@ -12,7 +12,7 @@
       "name": "customer-data-review",
       "source": "./plugins/customer-data-review",
       "description": "Turn customer call transcripts, surveys and reviews into a report with counted themes, checked quotes, executive findings and opportunities.",
-      "version": "1.0.0"
+      "version": "1.0.1"
     }
   ]
 }

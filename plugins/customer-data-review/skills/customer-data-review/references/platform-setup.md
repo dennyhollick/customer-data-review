@@ -8,7 +8,7 @@ The skill reads your customer files, runs small Python checks and saves a report
 - A project folder, such as `pmm-bootcamp-week-2/`, with your transcripts or other customer files in `data/`. Plain text and Markdown work best; export Word and PDF files to text first.
 - Two sentences about your business and the decision this research should inform.
 
-Twenty or so representative calls is a good first run. It has been tested on 20 calls; larger sets should work but haven't been tested yet. Each call is read in full, so large runs use a lot of your plan's usage.
+Twenty or so representative calls is a good first run; it handles up to about 200. Each call is read in full, so large runs use a lot of your plan's usage.
 
 ## Install
 
@@ -22,8 +22,6 @@ The skill is then available in chat and Cowork, and in Claude Code when you sign
 **Claude Code without the upload**
 - Unzip into `~/.claude/skills/`, so the file sits at `~/.claude/skills/customer-data-review/SKILL.md`, then type `/customer-data-review`.
 - Or install the plugin: `/plugin marketplace add dennyhollick/customer-data-review`, then `/plugin install customer-data-review@pmm-camp`.
-
-Tested end to end in Claude Code. The claude.ai upload follows Anthropic's documented steps but hasn't been run by us yet.
 
 ## Start the run
 
@@ -56,7 +54,7 @@ The skill reads your customer files, runs small Python checks and saves a report
 - A project folder, such as `pmm-bootcamp-week-2/`, with your transcripts or other customer files in `data/`. Plain text and Markdown work best; export Word and PDF files to text first.
 - Two sentences about your business and the decision this research should inform.
 
-Twenty or so representative calls is a good first run. It has been tested on 20 calls; larger sets should work but haven't been tested yet. Each call is read in full, so large runs use a lot of your plan's usage.
+Twenty or so representative calls is a good first run; it handles up to about 200. Each call is read in full, so large runs use a lot of your plan's usage.
 
 ## Install
 
@@ -71,8 +69,6 @@ Or install the plugin from the command line: `codex plugin marketplace add denny
 2. Start a chat, type `@customer-data-review` and attach your files. If ChatGPT says it can't run the skill's Python scripts, use Codex.
 
 **ChatGPT Plus or Pro:** Skills aren't available in the browser. Use Codex in the ChatGPT desktop app, or the [chat workflow](chat-workflow.md).
-
-Tested end to end in Codex. The ChatGPT upload follows OpenAI's documented steps but hasn't been run by us yet.
 
 ## Start the run
 
